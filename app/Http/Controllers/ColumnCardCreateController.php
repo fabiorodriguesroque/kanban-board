@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\StoreCardRequest;
+use App\Models\Card;
+use App\Models\Column;
+use Illuminate\Http\RedirectResponse;
+
+class ColumnCardCreateController extends Controller
+{
+    public function __invoke(StoreCardRequest $request, Column $column): RedirectResponse
+    {
+        $column->addCard(Card::create($request->all()));
+
+        return back();
+    }
+}
